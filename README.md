@@ -1,5 +1,7 @@
 # 3DGS Docker
 
+Dockerfile come from: https://github.com/jhcha08/3DGS-Docker/tree/main
+
 Dockerized Version of the 3D Gaussian Splatting for Real-Time Radiance Field Rendering
 
 This is the dockerized version of the 3DGS. It doesn't need the conda environment or other complex settings.
