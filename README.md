@@ -16,7 +16,7 @@ This repository is tested on only Ubuntu 22.04, not on Windows.
 
 git clone -b dev https://github.com/onceness/gaussian-splatting-docker.git --recursive
 docker pull nvcr.io/nvidia/pytorch:22.06-py3
-cd 3DGS-Docker
+cd gaussian-splatting-docker
 docker build -t 3dgs_docker .
 docker run -it \
   --name 3dgs_container \
@@ -25,6 +25,7 @@ docker run -it \
   --gpus '"device=0"' \
   -v $(pwd):/workdir \
   3dgs_docker /bin/bash
+cd /workdir
 pip install submodules/diff-gaussian-rasterization
 pip install submodules/simple-knn
 python train.py -s /workdir/path/to/your/colmap -d /workdir/path/to/your/colmap/depth
