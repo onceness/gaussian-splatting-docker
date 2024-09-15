@@ -1,3 +1,36 @@
+# 3DGS Docker
+
+Dockerized Version of the 3D Gaussian Splatting for Real-Time Radiance Field Rendering
+
+This is the dockerized version of the 3DGS. It doesn't need the conda environment or other complex settings.
+
+This repository used the docker image that supports python 3.8, torch 1.13.0, and cuda 11.7.
+
+In the Dockerfile, there are setups to install almost all the packages and libraries required to run the 3DGS.
+
+However, it now only supports train.py and render.py, not convert.py and SIBR viewer.
+
+Instead of using convert.py to get camera information, you can use other methods like the nerfstudio or DIM.
+
+This repository is tested on only Ubuntu 22.04, not on Windows.
+
+git clone -b dev https://github.com/onceness/gaussian-splatting-docker.git --recursive
+docker pull nvcr.io/nvidia/pytorch:22.06-py3
+cd 3DGS-Docker
+docker build -t 3dgs_docker .
+docker run -it \
+  --name 3dgs_container \
+  --shm-size 32G \
+  --network host \
+  --gpus '"device=0"' \
+  -v $(pwd):/workdir \
+  3dgs_docker /bin/bash
+pip install submodules/diff-gaussian-rasterization
+pip install submodules/simple-knn
+python train.py -s /workdir/path/to/your/colmap -d /workdir/path/to/your/colmap/depth
+python render.py -m /workdir/output/result
+
+
 # 3D Gaussian Splatting for Real-Time Radiance Field Rendering
 Bernhard Kerbl*, Georgios Kopanas*, Thomas Leimkühler, George Drettakis (* indicates equal contribution)<br>
 | [Webpage](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) | [Full Paper](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_high.pdf) | [Video](https://youtu.be/T_kXY43VZnk) | [Other GRAPHDECO Publications](http://www-sop.inria.fr/reves/publis/gdindex.php) | [FUNGRAPH project page](https://fungraph.inria.fr) |<br>
