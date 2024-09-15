@@ -14,6 +14,7 @@ Instead of using convert.py to get camera information, you can use other methods
 
 This repository is tested on only Ubuntu 22.04, not on Windows.
 
+```
 git clone -b dev https://github.com/onceness/gaussian-splatting-docker.git --recursive
 docker pull nvcr.io/nvidia/pytorch:22.06-py3
 cd gaussian-splatting-docker
@@ -30,7 +31,7 @@ pip install submodules/diff-gaussian-rasterization
 pip install submodules/simple-knn
 python train.py -s /workdir/path/to/your/colmap -d /workdir/path/to/your/colmap/depth
 python render.py -m /workdir/output/result
-
+```
 
 # 3D Gaussian Splatting for Real-Time Radiance Field Rendering
 Bernhard Kerbl*, Georgios Kopanas*, Thomas Leimkühler, George Drettakis (* indicates equal contribution)<br>
